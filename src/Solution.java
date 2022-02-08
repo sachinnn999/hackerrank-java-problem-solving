@@ -3,45 +3,43 @@ import java.lang.Math;
 
 
 class Result {
-    private static final int constraint = (int) (2 * Math.pow(2, 10));
     /*
-     * Complete the 'fizzBuzz' function below.
+     * Complete the 'timeConversion' function below.
      *
-     * The function accepts INTEGER n as parameter.
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
      */
 
-    public static void fizzBuzz(int n) {
+    public static String timeConversion(String s) {
         // Write your code here
-        String result;
-        for (int i = 1; i <= n; i++) {
-            result = null;
-            if (i % 3 == 0) {
-                result = "Fizz";
+        String result = null;
+        if (s != null) {
+            int hour = Integer.parseInt(s.substring(0, 2)) % 12;
+            if (s.endsWith("PM")) {
+                hour += 12;
             }
-            if (i % 5 == 0) {
-                if (result == null) {
-                    result = "Buzz";
-                } else {
-                    result += "Buzz";
-                }
-            }
-            if (result == null) {
-                result = String.valueOf(i);
-            }
-            System.out.println(result);
+            result = String.format("%02d", hour) + s.substring(2, 8);
         }
+        return result;
     }
 
 }
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+//
+//        String s = bufferedReader.readLine();
+        String s = "07:05:45PM";
 
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
+        String result = Result.timeConversion(s);
+        System.out.println(result);
 
-        Result.fizzBuzz(n);
-
-        bufferedReader.close();
+//        bufferedWriter.write(result);
+//        bufferedWriter.newLine();
+//
+//        bufferedReader.close();
+//        bufferedWriter.close();
     }
 }
